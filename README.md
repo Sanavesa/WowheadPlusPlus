@@ -24,7 +24,7 @@ Users are able to comment on all elements returned by the database.
 * **Kevin Dumitrescu** - *Co-Author* - [Kevin11234](https://github.com/Kevin11234)
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Inspiration
-This project was inspired from our love to the famous game WoW and the excellent database for WoW, [Wowhead](www.wowhead.com).
+This project was inspired from our love to the famous game WoW and the excellent database for WoW, [Wowhead](http://www.wowhead.com).
