@@ -72,6 +72,7 @@ public class Main extends Application
 		//db.disconnect();
 		
 		System.out.println("lol");
+		System.out.println("hello");
 	}
 	
 }
