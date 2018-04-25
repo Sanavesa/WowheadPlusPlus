@@ -70,6 +70,8 @@ public class Main extends Application
 //		db.lookupFaction(4);
 		
 		//db.disconnect();
+		
+		System.out.println("lol");
 	}
 	
 }
