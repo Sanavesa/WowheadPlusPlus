@@ -69,7 +69,7 @@ public class Main extends Application
 //		db.addArmor("Gladiator Breastplate22", 4, "Bestest chest", 79, 3, 5, 100, 100, 50, 50, 50);
 //		db.lookupFaction(4);
 		
-		//db.disconnect();
+		db.disconnect();
 	}
 	
 }
