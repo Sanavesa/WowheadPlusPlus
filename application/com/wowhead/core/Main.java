@@ -61,7 +61,7 @@ public class Main extends Application
 		
 		// Test database connection; show display "Connected!" in console if all is good.
 		// notice the ip.. its my local machine lol. DONT HAX ME OR U DED HOMIE ;)
-		Database db = new Database("jdbc:mysql://142.197.65.86:3306/wowhead?useSSL=false", "cs317", "kevin&mohammad=awesome");
+		//Database db = new Database("jdbc:mysql://142.197.65.86:3306/wowhead?useSSL=false", "cs317", "kevin&mohammad=awesome");
 		
 //		db.addWeapon("Frostmourne", 4, "chilly af", 80, 5, 3.4, 919.3, 14, 524, 32, 65, 33);
 //		db.addWeapon("Hand of Ragnaros", 4, "AWESOME!", 60, 9, 3.2, 21345, 1243, 524, 653, 435, 832);
@@ -69,7 +69,7 @@ public class Main extends Application
 //		db.addArmor("Gladiator Breastplate22", 4, "Bestest chest", 79, 3, 5, 100, 100, 50, 50, 50);
 //		db.lookupFaction(4);
 		
-		db.disconnect();
+		//db.disconnect();
 	}
 	
 }
