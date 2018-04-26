@@ -7,7 +7,10 @@ import com.wowhead.constant.Constants;
 import com.wowhead.constant.Resources;
 import com.wowhead.gui.page.Page;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class PageManager
@@ -28,6 +31,7 @@ public class PageManager
 		
 		// Initialize scene with defaults
 		scene = new Scene(startupPage.getRoot(), Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, Constants.WINDOW_BACKGROUND_COLOR);
+		scene.getStylesheets().add(Constants.WINDOW_STYLESHEET);
 		
 		// Set caption and logo
 		stage.setTitle(Constants.WINDOW_CAPTION);
@@ -36,6 +40,13 @@ public class PageManager
 		// Display window
 		stage.setScene(scene);
 		stage.show();
+		
+		// Hook ESC to close application
+		scene.addEventFilter(KeyEvent.KEY_PRESSED, e ->
+		{
+			if(e.getCode() == KeyCode.ESCAPE)
+				Platform.exit();
+		});
 	}
 
 	public Stage getStage()
