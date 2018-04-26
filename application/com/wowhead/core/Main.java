@@ -1,6 +1,6 @@
 package com.wowhead.core;
 
-import com.wowhead.gui.PageManager;
+import com.wowhead.gui.ResourceLoadPage;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -15,6 +15,6 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
-		new PageManager(primaryStage);
+		new ResourceLoadPage(primaryStage);
 	}
 }
