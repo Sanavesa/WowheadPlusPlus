@@ -17,8 +17,6 @@ public class HomePage3 extends Page
 	@Override
 	protected void initializePage()
 	{
-		root = new BorderPane();
-		
 		VBox vbox = new VBox(10);
 		root.setCenter(vbox);
 		
