@@ -23,7 +23,7 @@ public class AddItemPage extends Page
 		
 		root.setStyle("-fx-background: #000000");
 		
-		final int imageWidth = 72;
+		final int imageWidth = 80;
 		final int buttonWidth = 120;
 		
 		//Set Bottom
