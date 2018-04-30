@@ -1,4 +1,4 @@
-package com.wowhead.core;
+package com.wowhead.old;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
