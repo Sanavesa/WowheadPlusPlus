@@ -6,6 +6,7 @@ import com.wowhead.gui.PageManager;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -30,15 +31,17 @@ public class AddItemPage extends Page
 		//Set Bottom
 		Button btnReset = new Button("Reset");
 		btnReset.setFocusTraversable(false);
-		btnReset.setPrefSize(80, 30);					//Change location
+		btnReset.setPrefSize(80, 30);					
 		Button btnAdd = new Button("Add");
 		btnAdd.setFocusTraversable(false);
-		btnAdd.setPrefSize(80, 30);					//Change Location
+		btnAdd.setPrefSize(80, 30);					
 		Button btnCancel = new Button("Cancel");
 		btnCancel.setFocusTraversable(false);
-		btnCancel.setPrefSize(80, 30); 				//Change Location
-		VBox addItem = new VBox(5, btnReset, btnAdd, btnCancel);
-		addItem.setPadding(new Insets(10));			//Change Location
+		btnCancel.setPrefSize(80, 30); 				
+		HBox addItem = new HBox(5, btnReset, btnAdd, btnCancel);
+		addItem.setPadding(new Insets(10));			
+		
+		root.setBottom(addItem);
 		
 		//Set Top
 		ImageView imgLogo = new ImageView(Resources.IMG_WOWHEAD_LOGO);
@@ -60,5 +63,15 @@ public class AddItemPage extends Page
 		
 		root.setTop(top);
 		
+		//Set Center
+		TextField databaseName = new TextField("");
+		databaseName.setPrefSize(300, 30);
+		databaseName.setPromptText("Enter Database");
+		TextField itemName = new TextField("");
+		itemName.setPrefSize(300, 30);
+		itemName.setPromptText("Enter Item Name");
+		
+		
+
 	}
 }
