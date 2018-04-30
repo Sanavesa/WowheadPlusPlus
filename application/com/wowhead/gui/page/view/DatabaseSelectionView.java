@@ -29,7 +29,7 @@ public class DatabaseSelectionView
 	private final Glow glowEffect = new Glow(0.4f);
 	private final String selectedStyleClass = "databaseSelectionButton-selected";
 	private final String unselectedStyleClass = "databaseSelectionButton";
-	private HashMap<DatabaseType, Button> buttonDatabaseHashmap = new HashMap();
+	private HashMap<DatabaseType, Button> buttonDatabaseHashmap = new HashMap<DatabaseType, Button>();
 	
 	public DatabaseSelectionView()
 	{
