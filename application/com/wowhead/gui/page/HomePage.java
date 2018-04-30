@@ -28,7 +28,6 @@ public class HomePage extends Page
 	@Override
 	protected void initializePage()
 	{
-		root = new BorderPane();
 		root.setStyle("-fx-background: #000000");
 
 		// Setup left

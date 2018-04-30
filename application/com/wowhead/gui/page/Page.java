@@ -14,6 +14,7 @@ public abstract class Page
 	public Page(PageManager pageManager)
 	{
 		this.pageManager = pageManager;
+		root = new BorderPane();
 		initializePage();
 	}
 	
