@@ -28,10 +28,10 @@ public class HomePage2 extends Page
 		TextField inp = new TextField("Empty");
 		
 		Button btnPrevious = new Button("Previous Page");
-		btnPrevious.setOnAction(e -> sceneManager.goBackOnePage());
+		btnPrevious.setOnAction(e -> pageManager.goBackOnePage());
 		
 		Button btnNext = new Button("Next Page");
-		btnNext.setOnAction(e -> sceneManager.addPage(HomePage3.class));
+		btnNext.setOnAction(e -> pageManager.addPage(HomePage3.class));
 
 		vbox.getChildren().addAll(lblInfo, inp, btnPrevious, btnNext);
 	}
