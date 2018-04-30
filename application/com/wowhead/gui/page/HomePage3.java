@@ -25,7 +25,7 @@ public class HomePage3 extends Page
 		Label lblInfo = new Label("HomePage- 3");
 		
 		Button btnPrevious = new Button("Previous Page");
-		btnPrevious.setOnAction(e -> sceneManager.goBackOnePage());
+		btnPrevious.setOnAction(e -> pageManager.goBackOnePage());
 
 		vbox.getChildren().addAll(lblInfo, btnPrevious);
 	}

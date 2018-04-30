@@ -9,11 +9,12 @@ import javafx.scene.layout.BorderPane;
 public abstract class Page
 {
 	protected BorderPane root = null;
-	protected final PageManager sceneManager;
+	protected final PageManager pageManager;
 	
-	public Page(PageManager sceneManager)
+	public Page(PageManager pageManager)
 	{
-		this.sceneManager = sceneManager;
+		this.pageManager = pageManager;
+		root = new BorderPane();
 		initializePage();
 	}
 	
@@ -24,9 +25,9 @@ public abstract class Page
 		return root;
 	}
 
-	public final PageManager getSceneManager()
+	public final PageManager getPageManager()
 	{
-		return sceneManager;
+		return pageManager;
 	}
 	
 	@SuppressWarnings("unchecked")
