@@ -13,6 +13,8 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 public class QuestItemTableResultView
@@ -60,14 +62,34 @@ public class QuestItemTableResultView
 		});
 
 		Button btnAdd = new Button("Add");
+		btnAdd.setOnAction(e -> onPressedAdd());
+		btnAdd.setPrefSize(90, 30);
 		Button btnDelete = new Button("Delete");
-		HBox buttonsLayout = new HBox(20, btnAdd, btnDelete);
-
-		buttonsLayout.managedProperty().bind(table.visibleProperty());
-		buttonsLayout.visibleProperty()
-				.bind(Bindings.equal(Database.getInstance().accountRankProperty(), AccountRank.MODERATOR));
-
+		btnDelete.disableProperty().bind(table.getSelectionModel().selectedItemProperty().isNull());
+		btnDelete.setOnAction(e -> onPressedDelete());
+		btnDelete.setPrefSize(90, 30);
+		Region r1 = new Region();
+		Region r2 = new Region();
+		HBox.setHgrow(r1, Priority.ALWAYS);
+		HBox.setHgrow(r2, Priority.ALWAYS);
+		HBox buttonsLayout = new HBox(20, r1, btnAdd, btnDelete, r2);
+		
+		buttonsLayout.managedProperty().bind(buttonsLayout.visibleProperty());
+		buttonsLayout.visibleProperty().bind(Bindings.equal(Database.getInstance().accountRankProperty(), AccountRank.MODERATOR).and(table.visibleProperty()));
+		
 		root.getChildren().addAll(table, buttonsLayout);
+	}
+	
+	private void onPressedDelete()
+	{
+		Database.getInstance().deleteEntry("Item", table.getSelectionModel().getSelectedItem().getId());
+		table.getItems().remove(table.getSelectionModel().getSelectedIndex());
+		table.refresh();
+	}
+
+	private void onPressedAdd()
+	{
+		
 	}
 
 	public TableView<QuestItem> getTable()

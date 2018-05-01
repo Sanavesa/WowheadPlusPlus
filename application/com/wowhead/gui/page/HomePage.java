@@ -117,16 +117,16 @@ public class HomePage extends Page
 		VBox.setVgrow(region6, Priority.ALWAYS);
 		
 		StackPane tablesStackPane = new StackPane(
-				weaponView.getRoot());
-//				armorView.getRoot(),
-//				gemView.getRoot(),
-//				foodView.getRoot(),
-//				elixirView.getRoot(),
-//				questItemView.getRoot(),
-//				spellView.getRoot(),
-//				npcView.getRoot(),
-//				questView.getRoot(),
-//				achievementView.getRoot()); 
+				weaponView.getRoot(),
+				armorView.getRoot(),
+				gemView.getRoot(),
+				foodView.getRoot(),
+				elixirView.getRoot(),
+				questItemView.getRoot(),
+				spellView.getRoot(),
+				npcView.getRoot(),
+				questView.getRoot(),
+				achievementView.getRoot()); 
 		
 		VBox centerVbox = new VBox(region5, center, tablesStackPane, region6);
 		root.setCenter(centerVbox);
@@ -167,6 +167,11 @@ public class HomePage extends Page
 				achievementView.getTable().refresh();
 				
 				searchBar.setText("");
+			}
+			
+			switch(newDB)
+			{
+			
 			}
 		});
 	}

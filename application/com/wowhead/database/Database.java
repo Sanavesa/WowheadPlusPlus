@@ -536,8 +536,42 @@ public class Database
 		}
 	}
 	
-	public void deleteEntry(int iD, String tableName)
+	public boolean deleteEntry(String tableName, int id)
 	{
+		String sql = "DELETE FROM " + tableName + " WHERE id = ?;"; 
+		boolean deleted = false;
 		
+		try(PreparedStatement ps = connection.prepareStatement(sql))
+		{
+			ps.setInt(1, id);
+			
+			connection.setAutoCommit(false);
+			deleted = (ps.executeUpdate()==1);
+			connection.commit();
+		}
+		catch (SQLException e)
+		{
+			try
+			{
+				connection.rollback();
+			}
+			catch (SQLException e2)
+			{
+				e2.printStackTrace();
+			}
+		}
+		finally
+		{
+			try
+			{
+				connection.setAutoCommit(true);
+			}
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		return deleted;
 	}
 }

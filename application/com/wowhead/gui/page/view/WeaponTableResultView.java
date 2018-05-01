@@ -99,11 +99,14 @@ public class WeaponTableResultView
 	
 	private void onPressedDelete()
 	{
-		
+		Database.getInstance().deleteEntry("Item", table.getSelectionModel().getSelectedItem().getId());
+		table.getItems().remove(table.getSelectionModel().getSelectedIndex());
+		table.refresh();
 	}
 
 	private void onPressedAdd()
 	{
+		
 	}
 
 	public TableView<Weapon> getTable()
