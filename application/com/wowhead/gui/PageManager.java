@@ -33,8 +33,9 @@ public class PageManager
 		scene = new Scene(startupPage.getRoot(), Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, Constants.WINDOW_BACKGROUND_COLOR);
 		scene.getStylesheets().add(Constants.WINDOW_STYLESHEET);
 		
-		// Set caption and logo
+		// Set caption and logo and maximized
 		stage.setTitle(Constants.WINDOW_CAPTION);
+		stage.setMaximized(Constants.WINDOW_MAXIMIZED);
 		stage.getIcons().add(Resources.IMG_WOW_LOGO);
 		
 		// Display window

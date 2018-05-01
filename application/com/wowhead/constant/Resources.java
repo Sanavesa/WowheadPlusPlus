@@ -15,7 +15,7 @@ public final class Resources
 		return loadProgress.getReadOnlyProperty();
 	}
 	
-	private static int numOfImages = 7; //17;
+	private static int numOfImages = 12;
 	public static final Image IMG_WOW_LOGO;
 	public static final Image IMG_WOWHEAD_LOGO;
 	public static final Image IMG_SEARCH;
@@ -24,6 +24,11 @@ public final class Resources
 	public static final Image IMG_ICON_QUEST;
 	public static final Image IMG_ICON_ACHIEVEMENT;
 	public static final Image IMG_ICON_NPC;
+	public static final Image IMG_ICON_GEM;
+	public static final Image IMG_ICON_ELIXIR;
+	public static final Image IMG_ICON_FOOD;
+	public static final Image IMG_ICON_QUEST_ITEM;
+	public static final Image IMG_ICON_SPELL;
 	
 	static
 	{
@@ -83,14 +88,39 @@ public final class Resources
 			loadProgress.set(loadProgress.get() + difference/numOfImages);
 		});
 		
-//		for(int i = 0; i < 10; i++)
-//		{
-//			Image im = new Image("res/test.png", true);
-//			im.progressProperty().addListener((args, oldValue, newValue) ->
-//			{
-//				double difference = newValue.doubleValue() - oldValue.doubleValue();
-//				loadProgress.set(loadProgress.get() + difference/numOfImages);
-//			});
-//		}
+		IMG_ICON_ELIXIR = new Image("res/icon_elixir.jpg", true);
+		IMG_ICON_ELIXIR.progressProperty().addListener((args, oldValue, newValue) ->
+		{
+			double difference = newValue.doubleValue() - oldValue.doubleValue();
+			loadProgress.set(loadProgress.get() + difference/numOfImages);
+		});
+		
+		IMG_ICON_FOOD = new Image("res/icon_food.jpg", true);
+		IMG_ICON_FOOD.progressProperty().addListener((args, oldValue, newValue) ->
+		{
+			double difference = newValue.doubleValue() - oldValue.doubleValue();
+			loadProgress.set(loadProgress.get() + difference/numOfImages);
+		});
+		
+		IMG_ICON_GEM = new Image("res/icon_gem.jpg", true);
+		IMG_ICON_GEM.progressProperty().addListener((args, oldValue, newValue) ->
+		{
+			double difference = newValue.doubleValue() - oldValue.doubleValue();
+			loadProgress.set(loadProgress.get() + difference/numOfImages);
+		});
+		
+		IMG_ICON_QUEST_ITEM= new Image("res/icon_questitem.jpg", true);
+		IMG_ICON_QUEST_ITEM.progressProperty().addListener((args, oldValue, newValue) ->
+		{
+			double difference = newValue.doubleValue() - oldValue.doubleValue();
+			loadProgress.set(loadProgress.get() + difference/numOfImages);
+		});
+		
+		IMG_ICON_SPELL = new Image("res/icon_spell.jpg", true);
+		IMG_ICON_SPELL.progressProperty().addListener((args, oldValue, newValue) ->
+		{
+			double difference = newValue.doubleValue() - oldValue.doubleValue();
+			loadProgress.set(loadProgress.get() + difference/numOfImages);
+		});
 	}
 }

@@ -3,7 +3,7 @@ package com.wowhead.gui.page.view;
 import java.util.HashMap;
 
 import com.wowhead.constant.Resources;
-import com.wowhead.core.DatabaseType;
+import com.wowhead.database.constants.DatabaseType;
 
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -18,12 +18,11 @@ import javafx.scene.image.ImageView;
 
 public class DatabaseSelectionView
 {
-	private Button btnWeapon, btnArmor, btnNPC, btnQuest, btnAchievement;
+	private Button btnWeapon, btnArmor, btnGem, btnFood, btnElixir, btnQuestItem, btnSpell, btnNPC, btnQuest, btnAchievement;
 	private ToolBar toolBarDatabaseSelection;
 	
-	
 	private ReadOnlyObjectWrapper<DatabaseType> selectedDatabase = new ReadOnlyObjectWrapper<DatabaseType>();
-	private final int imageWidth = 72;
+	private final int imageWidth = 40;//72;
 	private final int buttonWidth = 120;
 	private final Insets padding = new Insets(10);
 	private final Glow glowEffect = new Glow(0.4f);
@@ -35,35 +34,60 @@ public class DatabaseSelectionView
 	{
 		ImageView imgWeapon = new ImageView(Resources.IMG_ICON_WEAPON);
 		ImageView imgArmor= new ImageView(Resources.IMG_ICON_ARMOR);
+		ImageView imgGem = new ImageView(Resources.IMG_ICON_GEM);
+		ImageView imgFood = new ImageView(Resources.IMG_ICON_FOOD);
+		ImageView imgElixir = new ImageView(Resources.IMG_ICON_ELIXIR);
+		ImageView imgQuestItem = new ImageView(Resources.IMG_ICON_QUEST_ITEM);
+		ImageView imgSpell = new ImageView(Resources.IMG_ICON_SPELL);
 		ImageView imgNPC = new ImageView(Resources.IMG_ICON_NPC);
 		ImageView imgQuest = new ImageView(Resources.IMG_ICON_QUEST);
 		ImageView imgAchievement = new ImageView(Resources.IMG_ICON_ACHIEVEMENT);
 		
 		setupImageView(imgWeapon);
-		setupImageView(imgArmor);		
+		setupImageView(imgArmor);
+		setupImageView(imgGem);
+		setupImageView(imgFood);
+		setupImageView(imgElixir);
+		setupImageView(imgQuestItem);
+		setupImageView(imgSpell);
 		setupImageView(imgNPC);
 		setupImageView(imgQuest);
 		setupImageView(imgAchievement);
 		
 		btnWeapon = new Button("Weapon DB", imgWeapon);
-		btnArmor= new Button("Armor DB", imgArmor);
+		btnArmor = new Button("Armor DB", imgArmor);
+		btnGem = new Button("Gem DB", imgGem);
+		btnFood = new Button("Food DB", imgFood);
+		btnElixir = new Button("Elixir DB", imgElixir);
+		btnQuestItem = new Button("Quest Item DB", imgQuestItem);
+		btnSpell = new Button("Spell DB", imgSpell);
 		btnNPC = new Button("NPC DB", imgNPC);
 		btnQuest = new Button("Quest DB", imgQuest);
-		btnAchievement= new Button("Achievement DB", imgAchievement);
+		btnAchievement = new Button("Achievement DB", imgAchievement);
 		
 		setupButton(btnWeapon, DatabaseType.WEAPON);
 		setupButton(btnArmor, DatabaseType.ARMOR);
+		setupButton(btnGem, DatabaseType.GEM);
+		setupButton(btnFood, DatabaseType.FOOD);
+		setupButton(btnElixir, DatabaseType.ELIXIR);
+		setupButton(btnQuestItem, DatabaseType.QUEST_ITEM);
+		setupButton(btnSpell, DatabaseType.SPELL);
 		setupButton(btnNPC, DatabaseType.NPC);
 		setupButton(btnQuest, DatabaseType.QUEST);
 		setupButton(btnAchievement, DatabaseType.ACHIEVEMENT);
 		
-		toolBarDatabaseSelection = new ToolBar(btnWeapon, btnArmor, btnNPC, btnQuest, btnAchievement);
+		toolBarDatabaseSelection = new ToolBar(btnWeapon, btnArmor, btnGem, btnFood, btnElixir, btnQuestItem, btnSpell, btnNPC, btnQuest, btnAchievement);
 		setupToolbar(toolBarDatabaseSelection);
 		
 		selectedDatabase.addListener((args, oldDB, newDB) ->
 		{
 			btnWeapon.getStyleClass().set(1, unselectedStyleClass);
 			btnArmor.getStyleClass().set(1, unselectedStyleClass);
+			btnGem.getStyleClass().set(1, unselectedStyleClass);
+			btnFood.getStyleClass().set(1, unselectedStyleClass);
+			btnElixir.getStyleClass().set(1, unselectedStyleClass);
+			btnQuestItem.getStyleClass().set(1, unselectedStyleClass);
+			btnSpell.getStyleClass().set(1, unselectedStyleClass);
 			btnNPC.getStyleClass().set(1, unselectedStyleClass);
 			btnQuest.getStyleClass().set(1, unselectedStyleClass);
 			btnAchievement.getStyleClass().set(1, unselectedStyleClass);
