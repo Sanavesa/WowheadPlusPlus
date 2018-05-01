@@ -21,6 +21,6 @@ public final class Constants
 	public static final int WINDOW_HEIGHT = 720;
 	public static final Color WINDOW_BACKGROUND_COLOR = Color.RED;
 	public static final String WINDOW_CAPTION = "Wowhead++";
-	public static final Class<? extends Page> WINDOW_STARTUP_PAGE = AddItemPage.class;
+	public static final Class<? extends Page> WINDOW_STARTUP_PAGE = ItemPage.class;
 	public static final String WINDOW_STYLESHEET = "stylesheets/application.css";
 }
