@@ -57,6 +57,8 @@ public class LoginPage extends Page
 		gridPane.setHgap(20);
 		gridPane.setVgap(10);
 		btnLogin = new Button("Login");
+		btnLogin.setPrefSize(100, 30);
+		btnLogin.setOnAction(e -> login());
 		btnLogin.addEventFilter(KeyEvent.KEY_PRESSED, e ->
 		{
 			if(e.getCode() == KeyCode.ENTER)
@@ -66,6 +68,7 @@ public class LoginPage extends Page
 		});
 		
 		usernameField = new TextField("");
+		usernameField.setPrefSize(200, 30);
 		usernameField.setPromptText("Enter username");
 		usernameField.addEventFilter(KeyEvent.KEY_PRESSED, e ->
 		{
@@ -76,6 +79,7 @@ public class LoginPage extends Page
 		});
 		
 		passwordField = new PasswordField();
+		passwordField.setPrefSize(200, 30);
 		passwordField.setPromptText("Enter password");
 		passwordField.addEventFilter(KeyEvent.KEY_PRESSED, e ->
 		{
@@ -86,11 +90,19 @@ public class LoginPage extends Page
 		});
 		
 		usernameLabel = new Label("Username:");
+		usernameLabel.setStyle("-fx-font-size: 14px;");
 		passwordLabel = new Label("Password:");
+		passwordLabel.setStyle("-fx-font-size: 14px;");
 		
 		gridPane.addRow(0, usernameLabel, usernameField);
 		gridPane.addRow(1, passwordLabel, passwordField);
-		gridPane.add(btnLogin, 1, 2, 1, 1);
+		
+		Region r5 = new Region();
+		Region r6 = new Region();
+		HBox.setHgrow(r5, Priority.ALWAYS);
+		HBox.setHgrow(r6, Priority.ALWAYS);
+		HBox loginLayout = new HBox(r5, btnLogin, r6);
+		gridPane.add(loginLayout, 1, 2, 1, 1);
 		
 		gridPane.setPadding(new Insets(10));
 		center.getChildren().addAll(r1, gridPane, r2);

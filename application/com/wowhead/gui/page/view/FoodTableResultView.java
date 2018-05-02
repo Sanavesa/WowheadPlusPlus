@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -35,6 +36,8 @@ public class FoodTableResultView
 		TableColumn<Food, String> descriptionCol = new TableColumn<>("Description");
 		TableColumn<Food, Integer> levelReqCol = new TableColumn<>("Level Req");
 		TableColumn<Food, Double> regenSpeedCol = new TableColumn<>("Regen Speed");
+		
+		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		table.getColumns().addAll(idCol, nameCol, rarityCol, descriptionCol, levelReqCol, regenSpeedCol);
 
@@ -62,6 +65,14 @@ public class FoodTableResultView
 				}
 			});
 			return row;
+		});
+		
+		table.addEventFilter(KeyEvent.KEY_PRESSED, e ->
+		{
+			if(table.getSelectionModel().getSelectedItem() == null)
+				return;
+			
+			viewFood(table.getSelectionModel().getSelectedItem());
 		});
 
 		Button btnAdd = new Button("Add");

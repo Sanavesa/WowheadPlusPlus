@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -35,6 +36,8 @@ public class QuestItemTableResultView
 		TableColumn<QuestItem, String> descriptionCol = new TableColumn<>("Description");
 		TableColumn<QuestItem, Integer> levelReqCol = new TableColumn<>("Level Req");
 		TableColumn<QuestItem, String> questNameCol = new TableColumn<>("Quest Name");
+		
+		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		table.getColumns().addAll(idCol, nameCol, rarityCol, descriptionCol, levelReqCol, questNameCol);
 
@@ -62,6 +65,14 @@ public class QuestItemTableResultView
 				}
 			});
 			return row;
+		});
+		
+		table.addEventFilter(KeyEvent.KEY_PRESSED, e ->
+		{
+			if(table.getSelectionModel().getSelectedItem() == null)
+				return;
+			
+			viewQuestItem(table.getSelectionModel().getSelectedItem());
 		});
 
 		Button btnAdd = new Button("Add");

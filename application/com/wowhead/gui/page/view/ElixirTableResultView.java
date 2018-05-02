@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -41,6 +42,8 @@ public class ElixirTableResultView
 		TableColumn<Elixir, Integer> spiritCol = new TableColumn<>("Spirit");
 		TableColumn<Elixir, Integer> intellectCol = new TableColumn<>("Intellect");
 		TableColumn<Elixir, Integer> agilityCol = new TableColumn<>("Agility");
+		
+		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
 		statsCol.getColumns().addAll(staminaCol, strengthCol, spiritCol, intellectCol, agilityCol);
 		table.getColumns().addAll(idCol, nameCol, rarityCol, descriptionCol, levelReqCol, durationCol, statsCol);
@@ -74,6 +77,14 @@ public class ElixirTableResultView
 				}
 			});
 			return row;
+		});
+		
+		table.addEventFilter(KeyEvent.KEY_PRESSED, e ->
+		{
+			if(table.getSelectionModel().getSelectedItem() == null)
+				return;
+			
+			viewElixir(table.getSelectionModel().getSelectedItem());
 		});
 		
 		Button btnAdd = new Button("Add");

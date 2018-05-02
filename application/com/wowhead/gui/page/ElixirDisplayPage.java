@@ -5,18 +5,18 @@ import com.wowhead.database.tables.Elixir;
 import com.wowhead.gui.PageManager;
 import com.wowhead.gui.page.view.TopView;
 
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 public class ElixirDisplayPage extends Page
 {
 	private TopView topView;
-	private Label itemName, itemDescription, itemLevel, itemDuration, itemStamina, itemStrength, itemSpirit,
+	private Label itemName, itemLevel, itemDuration, itemStamina, itemStrength, itemSpirit,
 			itemIntellect, itemAgility;
+	private Text itemDescription;
 
 	public ElixirDisplayPage(PageManager pageManager)
 	{
@@ -28,7 +28,8 @@ public class ElixirDisplayPage extends Page
 	{
 		topView = new TopView(pageManager);
 		itemName = new Label("");
-		itemDescription = new Label("");
+		itemDescription = new Text("");
+		itemDescription.setWrappingWidth(390);
 		itemLevel = new Label("");
 		itemDuration = new Label("");
 		itemStamina = new Label("");
@@ -46,10 +47,7 @@ public class ElixirDisplayPage extends Page
 	{
 		GridPane layout = new GridPane();
 		layout.setMaxWidth(400);
-		ColumnConstraints col1 = new ColumnConstraints(300);
-		col1.setHalignment(HPos.LEFT);
-		layout.getColumnConstraints().add(col1);
-		layout.setPadding(new Insets(10, 5, 10, 5));
+		layout.setPadding(new Insets(10));
 		layout.setStyle("-fx-border-width: 2px; -fx-border-radius: 12px; -fx-border-color: #888888;");
 		root.setCenter(layout);
 
@@ -102,9 +100,8 @@ public class ElixirDisplayPage extends Page
 		if (elixir.getDescription().length() > 0)
 		{
 			itemDescription.setText(elixir.getDescription());
-			itemDescription.setStyle("-fx-font-size: 16px; -fx-text-fill: #11FF11;");
-			itemDescription.setWrapText(true);
-			GridPane.setVgrow(itemDescription, Priority.SOMETIMES);
+			itemDescription.setStyle("-fx-font-size: 16px;");
+			itemDescription.setFill(Color.web("#11FF11"));
 			layout.addRow(rowIndex++, itemDescription);
 		}
 
@@ -112,6 +109,6 @@ public class ElixirDisplayPage extends Page
 		itemLevel.setStyle("-fx-font-size: 16px;");
 		layout.addRow(rowIndex++, itemLevel);
 
-		layout.setMaxHeight(24 + 16 * rowIndex + 20 + itemDescription.getHeight());
+		layout.setMaxHeight(24 + 16 * rowIndex + 20);
 	}
 }

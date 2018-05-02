@@ -6,6 +6,7 @@ import com.wowhead.database.constants.Faction;
 import com.wowhead.database.constants.NPCType;
 import com.wowhead.database.tables.NPC;
 import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.NpcDisplayPage;
 
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
@@ -14,6 +15,7 @@ import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -34,6 +36,8 @@ public class NPCTableResultView
 		TableColumn<NPC, Faction> factionCol = new TableColumn<>("Faction");
 		TableColumn<NPC, NPCType> npcTypeCol = new TableColumn<>("Type");
 		TableColumn<NPC, Integer> healthCol = new TableColumn<>("Health");
+		
+		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		table.getColumns().addAll(idCol, nameCol, factionCol, npcTypeCol, healthCol);
 
@@ -56,11 +60,18 @@ public class NPCTableResultView
 				if (e.getClickCount() == 2 && (!row.isEmpty()))
 				{
 					NPC rowData = row.getItem();
-					System.out.println("Double clicked " + rowData.getId());
 					viewNPC(rowData);
 				}
 			});
 			return row;
+		});
+		
+		table.addEventFilter(KeyEvent.KEY_PRESSED, e ->
+		{
+			if(table.getSelectionModel().getSelectedItem() == null)
+				return;
+			
+			viewNPC(table.getSelectionModel().getSelectedItem());
 		});
 
 		Button btnAdd = new Button("Add");
@@ -104,8 +115,9 @@ public class NPCTableResultView
 		return root;
 	}
 
-	public void viewNPC(NPC NPC)
+	public void viewNPC(NPC npc)
 	{
-		table.getItems().remove(NPC);
+		NpcDisplayPage page = (NpcDisplayPage) pageManager.addPage(NpcDisplayPage.class);
+		page.loadDisplay(npc);
 	}
 }

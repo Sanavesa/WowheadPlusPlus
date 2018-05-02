@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -43,6 +44,8 @@ public class GemTableResultView
 		TableColumn<Gem, Integer> spiritCol = new TableColumn<>("Spirit");
 		TableColumn<Gem, Integer> intellectCol = new TableColumn<>("Intellect");
 		TableColumn<Gem, Integer> agilityCol = new TableColumn<>("Agility");
+		
+		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		statsCol.getColumns().addAll(staminaCol, strengthCol, spiritCol, intellectCol, agilityCol);
 		table.getColumns().addAll(idCol, nameCol, rarityCol, descriptionCol, levelReqCol, gemTypeCol, statsCol);
@@ -76,6 +79,14 @@ public class GemTableResultView
 				}
 			});
 			return row;
+		});
+		
+		table.addEventFilter(KeyEvent.KEY_PRESSED, e ->
+		{
+			if(table.getSelectionModel().getSelectedItem() == null)
+				return;
+			
+			viewGem(table.getSelectionModel().getSelectedItem());
 		});
 
 		Button btnAdd = new Button("Add");

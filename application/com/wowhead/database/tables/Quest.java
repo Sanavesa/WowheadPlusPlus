@@ -5,14 +5,14 @@ public class Quest
 	private int id;
 	private String name;
 	private String description;
-	private String questName;
+	private String npcName;
 
-	public Quest(int id, String name, String description, String questName)
+	public Quest(int id, String name, String description, String npcName)
 	{
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.questName = questName;
+		this.npcName = npcName;
 	}
 
 	public int getId()
@@ -45,13 +45,13 @@ public class Quest
 		this.description = description;
 	}
 
-	public String getQuestName()
+	public String getNpcName()
 	{
-		return questName;
+		return npcName;
 	}
 
-	public void setQuestName(String questName)
+	public void setNpcName(String npcName)
 	{
-		this.questName = questName;
+		this.npcName = npcName;
 	}
 }

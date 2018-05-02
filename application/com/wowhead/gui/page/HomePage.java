@@ -95,7 +95,7 @@ public class HomePage extends Page
 		Region region4 = new Region();
 		HBox.setHgrow(region4, Priority.ALWAYS);
 		TextField searchBar = new TextField("");
-		searchBar.setPrefSize(300, 30);
+		searchBar.setPrefSize(400, 40);
 		searchBar.setPromptText("Enter search criteria");
 		searchBar.addEventFilter(KeyEvent.KEY_PRESSED, e ->
 		{
@@ -105,7 +105,7 @@ public class HomePage extends Page
 			}
 		});
 		ImageView imgSearch = new ImageView(Resources.IMG_SEARCH);
-		imgSearch.setFitHeight(20);
+		imgSearch.setFitHeight(30);
 		imgSearch.setPreserveRatio(true);
 		Button btnSearch = new Button("", imgSearch);
 		btnSearch.setOnAction(e -> searchDatabase(searchBar.getText()));

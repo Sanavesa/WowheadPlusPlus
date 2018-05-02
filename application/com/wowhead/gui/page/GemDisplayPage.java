@@ -10,13 +10,15 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 public class GemDisplayPage extends Page
 {
 	private TopView topView;
-	private Label itemName, itemDescription, itemLevel, itemGemType, itemStamina, itemStrength, itemSpirit,
+	private Label itemName, itemLevel, itemGemType, itemStamina, itemStrength, itemSpirit,
 			itemIntellect, itemAgility;
+	private Text itemDescription;
 
 	public GemDisplayPage(PageManager pageManager)
 	{
@@ -28,7 +30,8 @@ public class GemDisplayPage extends Page
 	{
 		topView = new TopView(pageManager);
 		itemName = new Label("");
-		itemDescription = new Label("");
+		itemDescription = new Text("");
+		itemDescription.setWrappingWidth(390);
 		itemLevel = new Label("");
 		itemGemType = new Label("");
 		itemStamina = new Label("");
@@ -102,9 +105,8 @@ public class GemDisplayPage extends Page
 		if (gem.getDescription().length() > 0)
 		{
 			itemDescription.setText(gem.getDescription());
-			itemDescription.setStyle("-fx-font-size: 16px; -fx-text-fill: #11FF11;");
-			itemDescription.setWrapText(true);
-			GridPane.setVgrow(itemDescription, Priority.SOMETIMES);
+			itemDescription.setStyle("-fx-font-size: 16px;");
+			itemDescription.setFill(Color.web("#11FF11"));
 			layout.addRow(rowIndex++, itemDescription);
 		}
 
@@ -112,6 +114,6 @@ public class GemDisplayPage extends Page
 		itemLevel.setStyle("-fx-font-size: 16px;");
 		layout.addRow(rowIndex++, itemLevel);
 
-		layout.setMaxHeight(24 + 16 * rowIndex + 20 + itemDescription.getHeight());
+		layout.setMaxHeight(24 + 16 * rowIndex + 20);
 	}
 }

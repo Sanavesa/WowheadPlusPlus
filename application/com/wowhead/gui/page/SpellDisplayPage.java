@@ -10,13 +10,15 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 public class SpellDisplayPage extends Page
 {
 	private TopView topView;
-	private Label spellName, spellDescription, spellRange, spellDuration, spellMagicSchool;
+	private Label spellName, spellRange, spellDuration, spellMagicSchool;
+	private Text spellDescription;
 
 	public SpellDisplayPage(PageManager pageManager)
 	{
@@ -28,7 +30,8 @@ public class SpellDisplayPage extends Page
 	{
 		topView = new TopView(pageManager);
 		spellName = new Label("");
-		spellDescription = new Label("");
+		spellDescription = new Text("");
+		spellDescription.setWrappingWidth(390);
 		spellRange = new Label("");
 		spellDuration = new Label("");
 		spellMagicSchool = new Label("");
@@ -78,12 +81,11 @@ public class SpellDisplayPage extends Page
 		if (spell.getDescription().length() > 0)
 		{
 			spellDescription.setText(spell.getDescription());
-			spellDescription.setStyle("-fx-font-size: 16px; -fx-text-fill: #FBFC03;");
-			spellDescription.setWrapText(true);
-			GridPane.setVgrow(spellDescription, Priority.SOMETIMES);
+			spellDescription.setStyle("-fx-font-size: 16px;");
+			spellDescription.setFill(Color.web("#FBDC03"));
 			layout.addRow(rowIndex++, spellDescription);
 		}
 
-		layout.setMaxHeight(24 + 16 * rowIndex + 20 + spellDescription.getHeight());
+		layout.setMaxHeight(24 + 16 * rowIndex + 20);
 	}
 }

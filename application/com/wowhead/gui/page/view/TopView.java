@@ -47,7 +47,6 @@ public class TopView
 		imgLogo.setOnMouseClicked(e ->
 		{
 			pageManager.addPage(HomePage.class);
-//			pageManager.goBackOnePage();
 		});
 
 		btnLogin = new Button("Login");
@@ -86,6 +85,7 @@ public class TopView
 		Region region2 = new Region();
 		HBox.setHgrow(region2, Priority.ALWAYS);
 		root = new HBox(region, imgLogo, region2, loggedOutLayout);
+		HBox.setMargin(imgLogo, new Insets(20, 0, 20, 0));
 		
 		Database.getInstance().accountRankProperty().addListener((args, oldRank, newRank) ->
 		{

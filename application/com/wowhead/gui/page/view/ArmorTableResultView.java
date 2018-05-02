@@ -16,6 +16,7 @@ import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -44,6 +45,8 @@ public class ArmorTableResultView
 		TableColumn<Armor, Integer> spiritCol = new TableColumn<>("Spirit");
 		TableColumn<Armor, Integer> intellectCol = new TableColumn<>("Intellect");
 		TableColumn<Armor, Integer> agilityCol = new TableColumn<>("Agility");
+		
+		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
 		statsCol.getColumns().addAll(staminaCol, strengthCol, spiritCol, intellectCol, agilityCol);
 		table.getColumns().addAll(idCol, nameCol, rarityCol, descriptionCol, levelReqCol, armorTypeCol, equipmentSlotCol, statsCol);
@@ -78,6 +81,14 @@ public class ArmorTableResultView
 				}
 			});
 			return row;
+		});
+		
+		table.addEventFilter(KeyEvent.KEY_PRESSED, e ->
+		{
+			if(table.getSelectionModel().getSelectedItem() == null)
+				return;
+			
+			viewArmor(table.getSelectionModel().getSelectedItem());
 		});
 		
 		Button btnAdd = new Button("Add");

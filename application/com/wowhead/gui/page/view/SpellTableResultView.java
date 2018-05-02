@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -35,6 +36,8 @@ public class SpellTableResultView
 		TableColumn<Spell, Double> durationCol = new TableColumn<>("Duration");
 		TableColumn<Spell, String> descriptionCol = new TableColumn<>("Description");
 		TableColumn<Spell, MagicSchool> magicSchoolCol = new TableColumn<>("Magic School");
+		
+		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		table.getColumns().addAll(idCol, nameCol, rangeCol, durationCol, descriptionCol, magicSchoolCol);
 
@@ -62,6 +65,14 @@ public class SpellTableResultView
 				}
 			});
 			return row;
+		});
+		
+		table.addEventFilter(KeyEvent.KEY_PRESSED, e ->
+		{
+			if(table.getSelectionModel().getSelectedItem() == null)
+				return;
+			
+			viewSpell(table.getSelectionModel().getSelectedItem());
 		});
 
 		Button btnAdd = new Button("Add");

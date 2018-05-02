@@ -10,14 +10,16 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 public class WeaponDisplayPage extends Page
 {
 	private TopView topView;
-	private Label itemName, itemDescription, itemLevel, itemType, itemAttackSpeed, itemAttackDamage,
+	private Label itemName, itemLevel, itemType, itemAttackSpeed, itemAttackDamage,
 			itemStamina, itemStrength, itemSpirit, itemIntellect, itemAgility;
+	private Text itemDescription;
 
 	public WeaponDisplayPage(PageManager pageManager)
 	{
@@ -29,7 +31,8 @@ public class WeaponDisplayPage extends Page
 	{
 		topView = new TopView(pageManager);
 		itemName = new Label("");
-		itemDescription = new Label("");
+		itemDescription = new Text("");
+		itemDescription.setWrappingWidth(390);
 		itemLevel = new Label("");
 		itemType = new Label("");
 		itemAttackSpeed = new Label("");
@@ -114,9 +117,8 @@ public class WeaponDisplayPage extends Page
 		if(weapon.getDescription().length() > 0)
 		{
 			itemDescription.setText(weapon.getDescription());
-			itemDescription.setStyle("-fx-font-size: 16px; -fx-text-fill: #11FF11;");
-			itemDescription.setWrapText(true);
-			GridPane.setVgrow(itemDescription, Priority.SOMETIMES);
+			itemDescription.setStyle("-fx-font-size: 16px;");
+			itemDescription.setFill(Color.web("#11FF11"));
 			layout.addRow(rowIndex++, itemDescription);
 		}
 		
@@ -124,6 +126,6 @@ public class WeaponDisplayPage extends Page
 		itemLevel.setStyle("-fx-font-size: 16px;");
 		layout.addRow(rowIndex++, itemLevel);
 		
-		layout.setMaxHeight(24 + 16 * rowIndex + 20 + itemDescription.getHeight());
+		layout.setMaxHeight(24 + 16 * rowIndex + 20);
 	}
 }

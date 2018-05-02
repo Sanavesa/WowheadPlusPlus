@@ -5,6 +5,7 @@ import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.constants.Faction;
 import com.wowhead.database.tables.Quest;
 import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.QuestDisplayPage;
 
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
@@ -13,6 +14,7 @@ import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -32,6 +34,8 @@ public class QuestTableResultView
 		TableColumn<Quest, String> nameCol = new TableColumn<>("Name");
 		TableColumn<Quest, Faction> descriptionCol = new TableColumn<>("Description");
 		TableColumn<Quest, String> questGiverCol = new TableColumn<>("Quest Giver");
+		
+		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		table.getColumns().addAll(idCol, nameCol, descriptionCol, questGiverCol);
 
@@ -40,7 +44,7 @@ public class QuestTableResultView
 
 		nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 		descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-		questGiverCol.setCellValueFactory(new PropertyValueFactory<>("questName"));
+		questGiverCol.setCellValueFactory(new PropertyValueFactory<>("npcName"));
 
 		table.managedProperty().bind(table.visibleProperty());
 		table.visibleProperty().bind(Bindings.isEmpty(table.getItems()).not());
@@ -53,11 +57,18 @@ public class QuestTableResultView
 				if (e.getClickCount() == 2 && (!row.isEmpty()))
 				{
 					Quest rowData = row.getItem();
-					System.out.println("Double clicked " + rowData.getId());
 					viewQuest(rowData);
 				}
 			});
 			return row;
+		});
+		
+		table.addEventFilter(KeyEvent.KEY_PRESSED, e ->
+		{
+			if(table.getSelectionModel().getSelectedItem() == null)
+				return;
+			
+			viewQuest(table.getSelectionModel().getSelectedItem());
 		});
 
 		Button btnAdd = new Button("Add");
@@ -101,8 +112,9 @@ public class QuestTableResultView
 		return root;
 	}
 
-	public void viewQuest(Quest Quest)
+	public void viewQuest(Quest quest)
 	{
-		table.getItems().remove(Quest);
+		QuestDisplayPage page = (QuestDisplayPage) pageManager.addPage(QuestDisplayPage.class);
+		page.loadDisplay(quest);
 	}
 }
