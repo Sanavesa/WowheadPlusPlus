@@ -5,6 +5,7 @@ import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.constants.MagicSchool;
 import com.wowhead.database.tables.Spell;
 import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.AddSpellPage;
 import com.wowhead.gui.page.SpellDisplayPage;
 
 import javafx.beans.binding.Bindings;
@@ -103,7 +104,8 @@ public class SpellTableResultView
 
 	private void onPressedAdd()
 	{
-		
+		AddSpellPage page = (AddSpellPage) pageManager.addPage(AddSpellPage.class);
+		page.resetToDefault();
 	}
 
 	public TableView<Spell> getTable()

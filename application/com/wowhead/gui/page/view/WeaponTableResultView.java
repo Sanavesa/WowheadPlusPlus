@@ -6,6 +6,8 @@ import com.wowhead.database.constants.ItemRarity;
 import com.wowhead.database.constants.WeaponType;
 import com.wowhead.database.tables.Weapon;
 import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.AddWeaponPage;
+import com.wowhead.gui.page.UpdateWeaponPage;
 import com.wowhead.gui.page.WeaponDisplayPage;
 
 import javafx.beans.binding.Bindings;
@@ -120,7 +122,8 @@ public class WeaponTableResultView
 
 	private void onPressedAdd()
 	{
-		
+		AddWeaponPage page = (AddWeaponPage) pageManager.addPage(AddWeaponPage.class);
+		page.resetToDefault();
 	}
 
 	public TableView<Weapon> getTable()
@@ -135,7 +138,15 @@ public class WeaponTableResultView
 
 	public void viewWeapon(Weapon weapon)
 	{
-		WeaponDisplayPage page = (WeaponDisplayPage) pageManager.addPage(WeaponDisplayPage.class);
-		page.loadDisplay(weapon);
+		if(Database.getInstance().getAccountRank() == AccountRank.MODERATOR)
+		{
+			UpdateWeaponPage page = (UpdateWeaponPage) pageManager.addPage(UpdateWeaponPage.class);
+			page.loadFromWeapon(weapon);
+		}
+		else
+		{
+			WeaponDisplayPage page = (WeaponDisplayPage) pageManager.addPage(WeaponDisplayPage.class);
+			page.loadDisplay(weapon);
+		}
 	}
 }

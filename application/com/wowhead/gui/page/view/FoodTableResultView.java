@@ -5,6 +5,7 @@ import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.constants.ItemRarity;
 import com.wowhead.database.tables.Food;
 import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.AddFoodPage;
 import com.wowhead.gui.page.FoodDisplayPage;
 
 import javafx.beans.binding.Bindings;
@@ -103,7 +104,8 @@ public class FoodTableResultView
 
 	private void onPressedAdd()
 	{
-		
+		AddFoodPage page = (AddFoodPage) pageManager.addPage(AddFoodPage.class);
+		page.resetToDefault();
 	}
 
 	public TableView<Food> getTable()

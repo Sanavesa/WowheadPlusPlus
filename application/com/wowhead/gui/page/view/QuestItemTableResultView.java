@@ -5,6 +5,7 @@ import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.constants.ItemRarity;
 import com.wowhead.database.tables.QuestItem;
 import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.AddQuestItemPage;
 import com.wowhead.gui.page.QuestItemDisplayPage;
 
 import javafx.beans.binding.Bindings;
@@ -103,7 +104,8 @@ public class QuestItemTableResultView
 
 	private void onPressedAdd()
 	{
-		
+		AddQuestItemPage page = (AddQuestItemPage) pageManager.addPage(AddQuestItemPage.class);
+		page.resetToDefault();
 	}
 
 	public TableView<QuestItem> getTable()

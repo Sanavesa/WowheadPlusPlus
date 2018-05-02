@@ -6,6 +6,7 @@ import com.wowhead.database.constants.Faction;
 import com.wowhead.database.constants.NPCType;
 import com.wowhead.database.tables.NPC;
 import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.AddNpcPage;
 import com.wowhead.gui.page.NpcDisplayPage;
 
 import javafx.beans.binding.Bindings;
@@ -102,7 +103,8 @@ public class NPCTableResultView
 
 	private void onPressedAdd()
 	{
-		
+		AddNpcPage page = (AddNpcPage) pageManager.addPage(AddNpcPage.class);
+		page.resetToDefault();
 	}
 
 	public TableView<NPC> getTable()

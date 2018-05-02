@@ -5,6 +5,7 @@ import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.tables.Achievement;
 import com.wowhead.gui.PageManager;
 import com.wowhead.gui.page.AchievementDisplayPage;
+import com.wowhead.gui.page.AddAchievementPage;
 
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
@@ -96,7 +97,8 @@ public class AchievementTableResultView
 
 	private void onPressedAdd()
 	{
-		
+		AddAchievementPage page = (AddAchievementPage) pageManager.addPage(AddAchievementPage.class);
+		page.resetToDefault();
 	}
 	
 	public TableView<Achievement> getTable()

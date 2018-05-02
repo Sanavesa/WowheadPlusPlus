@@ -7,6 +7,7 @@ import com.wowhead.database.constants.EquipmentSlot;
 import com.wowhead.database.constants.ItemRarity;
 import com.wowhead.database.tables.Armor;
 import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.AddArmorPage;
 import com.wowhead.gui.page.ArmorDisplayPage;
 
 import javafx.beans.binding.Bindings;
@@ -119,7 +120,8 @@ public class ArmorTableResultView
 
 	private void onPressedAdd()
 	{
-		
+		AddArmorPage page = (AddArmorPage) pageManager.addPage(AddArmorPage.class);
+		page.resetToDefault();
 	}
 	
 	public TableView<Armor> getTable()

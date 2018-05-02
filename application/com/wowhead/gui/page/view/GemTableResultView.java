@@ -6,6 +6,7 @@ import com.wowhead.database.constants.GemType;
 import com.wowhead.database.constants.ItemRarity;
 import com.wowhead.database.tables.Gem;
 import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.AddGemPage;
 import com.wowhead.gui.page.GemDisplayPage;
 
 import javafx.beans.binding.Bindings;
@@ -117,7 +118,8 @@ public class GemTableResultView
 
 	private void onPressedAdd()
 	{
-		
+		AddGemPage page = (AddGemPage) pageManager.addPage(AddGemPage.class);
+		page.resetToDefault();
 	}
 
 	public TableView<Gem> getTable()

@@ -5,6 +5,7 @@ import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.constants.ItemRarity;
 import com.wowhead.database.tables.Elixir;
 import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.AddElixirPage;
 import com.wowhead.gui.page.ElixirDisplayPage;
 
 import javafx.beans.binding.Bindings;
@@ -115,7 +116,8 @@ public class ElixirTableResultView
 
 	private void onPressedAdd()
 	{
-		
+		AddElixirPage page = (AddElixirPage) pageManager.addPage(AddElixirPage.class);
+		page.resetToDefault();
 	}
 	
 	public TableView<Elixir> getTable()

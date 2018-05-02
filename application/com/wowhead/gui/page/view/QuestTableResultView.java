@@ -5,6 +5,7 @@ import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.constants.Faction;
 import com.wowhead.database.tables.Quest;
 import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.AddQuestPage;
 import com.wowhead.gui.page.QuestDisplayPage;
 
 import javafx.beans.binding.Bindings;
@@ -99,7 +100,8 @@ public class QuestTableResultView
 
 	private void onPressedAdd()
 	{
-		
+		AddQuestPage page = (AddQuestPage) pageManager.addPage(AddQuestPage.class);
+		page.resetToDefault();
 	}
 
 	public TableView<Quest> getTable()
