@@ -3,6 +3,7 @@ package com.wowhead.gui.page.view;
 import com.wowhead.database.Database;
 import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.tables.Achievement;
+import com.wowhead.gui.PageManager;
 
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
@@ -20,10 +21,12 @@ public class AchievementTableResultView
 {
 	private VBox root = new VBox();
 	private TableView<Achievement> table = new TableView<Achievement>();
+	private final PageManager pageManager;
 	
 	@SuppressWarnings("unchecked")
-	public AchievementTableResultView()
+	public AchievementTableResultView(PageManager pageManager)
 	{
+		this.pageManager = pageManager;
 		TableColumn<Achievement, Integer> idCol = new TableColumn<>("ID");
 		TableColumn<Achievement, String> nameCol = new TableColumn<>("Name");
 		TableColumn<Achievement, Integer> pointRewardCol = new TableColumn<>("Point Reward");

@@ -4,6 +4,7 @@ import com.wowhead.database.Database;
 import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.constants.Faction;
 import com.wowhead.database.tables.Quest;
+import com.wowhead.gui.PageManager;
 
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
@@ -21,10 +22,12 @@ public class QuestTableResultView
 {
 	private VBox root = new VBox(20);
 	private TableView<Quest> table = new TableView<Quest>();
-
+	private final PageManager pageManager;
+	
 	@SuppressWarnings("unchecked")
-	public QuestTableResultView()
+	public QuestTableResultView(PageManager pageManager)
 	{
+		this.pageManager = pageManager;
 		TableColumn<Quest, Integer> idCol = new TableColumn<>("ID");
 		TableColumn<Quest, String> nameCol = new TableColumn<>("Name");
 		TableColumn<Quest, Faction> descriptionCol = new TableColumn<>("Description");
@@ -37,7 +40,7 @@ public class QuestTableResultView
 
 		nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 		descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-		questGiverCol.setCellValueFactory(new PropertyValueFactory<>("QuestName"));
+		questGiverCol.setCellValueFactory(new PropertyValueFactory<>("questName"));
 
 		table.managedProperty().bind(table.visibleProperty());
 		table.visibleProperty().bind(Bindings.isEmpty(table.getItems()).not());

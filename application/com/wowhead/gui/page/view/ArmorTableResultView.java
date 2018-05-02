@@ -1,11 +1,13 @@
 package com.wowhead.gui.page.view;
 
-import com.wowhead.database.constants.ItemRarity;
 import com.wowhead.database.Database;
 import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.constants.ArmorType;
 import com.wowhead.database.constants.EquipmentSlot;
+import com.wowhead.database.constants.ItemRarity;
 import com.wowhead.database.tables.Armor;
+import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.ArmorDisplayPage;
 
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
@@ -23,10 +25,12 @@ public class ArmorTableResultView
 {
 	private VBox root = new VBox(20);
 	private TableView<Armor> table = new TableView<Armor>();
+	private final PageManager pageManager;
 	
 	@SuppressWarnings("unchecked")
-	public ArmorTableResultView()
+	public ArmorTableResultView(PageManager pageManager)
 	{
+		this.pageManager = pageManager;
 		TableColumn<Armor, Integer> idCol = new TableColumn<>("ID");
 		TableColumn<Armor, String> nameCol = new TableColumn<>("Name");
 		TableColumn<Armor, ItemRarity> rarityCol = new TableColumn<>("Rarity");
@@ -70,7 +74,6 @@ public class ArmorTableResultView
 				if(e.getClickCount() == 2 && (!row.isEmpty()))
 				{
 					Armor rowData = row.getItem();
-					System.out.println("Double clicked " + rowData.getId());
 					viewArmor(rowData);
 				}
 			});
@@ -118,8 +121,9 @@ public class ArmorTableResultView
 		return root;
 	}
 	
-	public void viewArmor(Armor Armor)
+	public void viewArmor(Armor armor)
 	{
-		table.getItems().remove(Armor);
+		ArmorDisplayPage page = (ArmorDisplayPage) pageManager.addPage(ArmorDisplayPage.class);
+		page.loadDisplay(armor);
 	}
 }

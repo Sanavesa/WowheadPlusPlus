@@ -41,13 +41,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class HomePage extends Page
 {
 	private DatabaseSelectionView databaseSelectionView;
 	private TopView topView;
+	private VBox centerVbox; 
 	
 	private WeaponTableResultView weaponView;
 	private ArmorTableResultView armorView;
@@ -70,16 +70,16 @@ public class HomePage extends Page
 	{
 		root.setStyle("-fx-background: #000000");
 		
-		weaponView = new WeaponTableResultView();
-		armorView = new ArmorTableResultView();
-		gemView = new GemTableResultView();
-		foodView = new FoodTableResultView();
-		elixirView = new ElixirTableResultView();
-		questItemView = new QuestItemTableResultView();
-		spellView = new SpellTableResultView();
-		npcView = new NPCTableResultView();
-		questView = new QuestTableResultView();
-		achievementView = new AchievementTableResultView();
+		weaponView = new WeaponTableResultView(pageManager);
+		armorView = new ArmorTableResultView(pageManager);
+		gemView = new GemTableResultView(pageManager);
+		foodView = new FoodTableResultView(pageManager);
+		elixirView = new ElixirTableResultView(pageManager);
+		questItemView = new QuestItemTableResultView(pageManager);
+		spellView = new SpellTableResultView(pageManager);
+		npcView = new NPCTableResultView(pageManager);
+		questView = new QuestTableResultView(pageManager);
+		achievementView = new AchievementTableResultView(pageManager);
 		
 		// Setup left
 		databaseSelectionView = new DatabaseSelectionView();
@@ -116,19 +116,7 @@ public class HomePage extends Page
 		Region region6 = new Region();
 		VBox.setVgrow(region6, Priority.ALWAYS);
 		
-		StackPane tablesStackPane = new StackPane(
-				weaponView.getRoot(),
-				armorView.getRoot(),
-				gemView.getRoot(),
-				foodView.getRoot(),
-				elixirView.getRoot(),
-				questItemView.getRoot(),
-				spellView.getRoot(),
-				npcView.getRoot(),
-				questView.getRoot(),
-				achievementView.getRoot()); 
-		
-		VBox centerVbox = new VBox(region5, center, tablesStackPane, region6);
+		centerVbox = new VBox(20, region5, center, weaponView.getRoot(), region6);
 		root.setCenter(centerVbox);
 		
 		databaseSelectionView.selectedDatabaseProperty().addListener((args, oldDB, newDB) ->
@@ -171,7 +159,39 @@ public class HomePage extends Page
 			
 			switch(newDB)
 			{
-			
+			case WEAPON:
+				centerVbox.getChildren().set(2, weaponView.getRoot());
+				break;
+			case ARMOR:
+				centerVbox.getChildren().set(2, armorView.getRoot());
+				break;
+			case GEM:
+				centerVbox.getChildren().set(2, gemView.getRoot());
+				break;
+			case FOOD:
+				centerVbox.getChildren().set(2, foodView.getRoot());
+				break;
+			case ELIXIR:
+				centerVbox.getChildren().set(2, elixirView.getRoot());
+				break;
+			case QUEST_ITEM:
+				centerVbox.getChildren().set(2, questItemView.getRoot());
+				break;
+			case SPELL:
+				centerVbox.getChildren().set(2, spellView.getRoot());
+				break;
+			case NPC:
+				centerVbox.getChildren().set(2, npcView.getRoot());
+				break;
+			case QUEST:
+				centerVbox.getChildren().set(2, questView.getRoot());
+				break;
+			case ACHIEVEMENT:
+				centerVbox.getChildren().set(2, achievementView.getRoot());
+				break;
+			default:
+				System.err.println("Database not implemented: " + newDB);
+				break;
 			}
 		});
 	}

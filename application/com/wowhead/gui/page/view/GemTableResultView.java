@@ -5,6 +5,8 @@ import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.constants.GemType;
 import com.wowhead.database.constants.ItemRarity;
 import com.wowhead.database.tables.Gem;
+import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.GemDisplayPage;
 
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
@@ -22,10 +24,13 @@ public class GemTableResultView
 {
 	private VBox root = new VBox(20);
 	private TableView<Gem> table = new TableView<Gem>();
+	private final PageManager pageManager;
 
 	@SuppressWarnings("unchecked")
-	public GemTableResultView()
+	public GemTableResultView(PageManager pageManager)
 	{
+		this.pageManager = pageManager;
+		
 		TableColumn<Gem, Integer> idCol = new TableColumn<>("ID");
 		TableColumn<Gem, String> nameCol = new TableColumn<>("Name");
 		TableColumn<Gem, ItemRarity> rarityCol = new TableColumn<>("Rarity");
@@ -67,7 +72,6 @@ public class GemTableResultView
 				if (e.getClickCount() == 2 && (!row.isEmpty()))
 				{
 					Gem rowData = row.getItem();
-					System.out.println("Double clicked " + rowData.getId());
 					viewGem(rowData);
 				}
 			});
@@ -115,8 +119,9 @@ public class GemTableResultView
 		return root;
 	}
 
-	public void viewGem(Gem Gem)
+	public void viewGem(Gem gem)
 	{
-		table.getItems().remove(Gem);
+		GemDisplayPage page = (GemDisplayPage) pageManager.addPage(GemDisplayPage.class);
+		page.loadDisplay(gem);
 	}
 }

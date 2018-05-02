@@ -4,6 +4,8 @@ import com.wowhead.database.Database;
 import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.constants.MagicSchool;
 import com.wowhead.database.tables.Spell;
+import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.SpellDisplayPage;
 
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
@@ -21,10 +23,12 @@ public class SpellTableResultView
 {
 	private VBox root = new VBox(20);
 	private TableView<Spell> table = new TableView<Spell>();
-
+	private final PageManager pageManager;
+	
 	@SuppressWarnings("unchecked")
-	public SpellTableResultView()
+	public SpellTableResultView(PageManager pageManager)
 	{
+		this.pageManager = pageManager;
 		TableColumn<Spell, Integer> idCol = new TableColumn<>("ID");
 		TableColumn<Spell, String> nameCol = new TableColumn<>("Name");
 		TableColumn<Spell, Integer> rangeCol = new TableColumn<>("Range");
@@ -54,7 +58,6 @@ public class SpellTableResultView
 				if (e.getClickCount() == 2 && (!row.isEmpty()))
 				{
 					Spell rowData = row.getItem();
-					System.out.println("Double clicked " + rowData.getId());
 					viewSpell(rowData);
 				}
 			});
@@ -102,8 +105,9 @@ public class SpellTableResultView
 		return root;
 	}
 
-	public void viewSpell(Spell Spell)
+	public void viewSpell(Spell spell)
 	{
-		table.getItems().remove(Spell);
+		SpellDisplayPage page = (SpellDisplayPage) pageManager.addPage(SpellDisplayPage.class);
+		page.loadDisplay(spell);
 	}
 }

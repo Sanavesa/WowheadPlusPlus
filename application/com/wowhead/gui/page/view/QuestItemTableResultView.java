@@ -4,6 +4,8 @@ import com.wowhead.database.Database;
 import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.constants.ItemRarity;
 import com.wowhead.database.tables.QuestItem;
+import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.QuestItemDisplayPage;
 
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
@@ -21,10 +23,12 @@ public class QuestItemTableResultView
 {
 	private VBox root = new VBox(20);
 	private TableView<QuestItem> table = new TableView<QuestItem>();
+	private final PageManager pageManager;
 
 	@SuppressWarnings("unchecked")
-	public QuestItemTableResultView()
+	public QuestItemTableResultView(PageManager pageManager)
 	{
+		this.pageManager = pageManager;
 		TableColumn<QuestItem, Integer> idCol = new TableColumn<>("ID");
 		TableColumn<QuestItem, String> nameCol = new TableColumn<>("Name");
 		TableColumn<QuestItem, ItemRarity> rarityCol = new TableColumn<>("Rarity");
@@ -54,7 +58,6 @@ public class QuestItemTableResultView
 				if (e.getClickCount() == 2 && (!row.isEmpty()))
 				{
 					QuestItem rowData = row.getItem();
-					System.out.println("Double clicked " + rowData.getId());
 					viewQuestItem(rowData);
 				}
 			});
@@ -102,8 +105,9 @@ public class QuestItemTableResultView
 		return root;
 	}
 
-	public void viewQuestItem(QuestItem QuestItem)
+	public void viewQuestItem(QuestItem questItem)
 	{
-		table.getItems().remove(QuestItem);
+		QuestItemDisplayPage page = (QuestItemDisplayPage) pageManager.addPage(QuestItemDisplayPage.class);
+		page.loadDisplay(questItem);
 	}
 }

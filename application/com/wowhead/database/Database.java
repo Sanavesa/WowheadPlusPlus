@@ -30,6 +30,9 @@ import com.wowhead.database.tables.Weapon;
 
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 
 public class Database
 {
@@ -58,6 +61,8 @@ public class Database
 		{
 			System.out.println("Failed to connect to the database!");
 			System.err.println(e.getMessage());
+			Alert alert = new Alert(AlertType.ERROR, "Failed to connect to the database!", ButtonType.OK);
+			alert.showAndWait();
 		}
 	}
 	
@@ -389,7 +394,7 @@ public class Database
 	
 	public QuestItem[] searchQuestItem(String questItemName)
 	{
-		String sql = "SELECT * FROM Item,QuestItem,NPC WHERE name LIKE ? AND Item.id = QuestItem.id AND NPC.id = QuestItem.usedForQuestID;";
+		String sql = "SELECT * FROM Item,QuestItem,NPC WHERE Item.name LIKE ? AND Item.id = QuestItem.id AND NPC.id = QuestItem.usedForQuestID;";
 		
 		try(PreparedStatement ps = connection.prepareStatement(sql))
 		{

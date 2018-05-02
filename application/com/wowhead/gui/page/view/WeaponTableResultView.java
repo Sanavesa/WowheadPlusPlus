@@ -5,6 +5,8 @@ import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.constants.ItemRarity;
 import com.wowhead.database.constants.WeaponType;
 import com.wowhead.database.tables.Weapon;
+import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.WeaponDisplayPage;
 
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
@@ -22,10 +24,12 @@ public class WeaponTableResultView
 {
 	private VBox root = new VBox(20);
 	private TableView<Weapon> table = new TableView<Weapon>();
+	private final PageManager pageManager;
 	
 	@SuppressWarnings("unchecked")
-	public WeaponTableResultView()
+	public WeaponTableResultView(PageManager pageManager)
 	{
+		this.pageManager = pageManager;
 		TableColumn<Weapon, Integer> idCol = new TableColumn<>("ID");
 		TableColumn<Weapon, String> nameCol = new TableColumn<>("Name");
 		TableColumn<Weapon, ItemRarity> rarityCol = new TableColumn<>("Rarity");
@@ -71,7 +75,6 @@ public class WeaponTableResultView
 				if(e.getClickCount() == 2 && (!row.isEmpty()))
 				{
 					Weapon rowData = row.getItem();
-					System.out.println("Double clicked " + rowData.getId());
 					viewWeapon(rowData);
 				}
 			});
@@ -121,6 +124,7 @@ public class WeaponTableResultView
 
 	public void viewWeapon(Weapon weapon)
 	{
-		table.getItems().remove(weapon);
+		WeaponDisplayPage page = (WeaponDisplayPage) pageManager.addPage(WeaponDisplayPage.class);
+		page.loadDisplay(weapon);
 	}
 }

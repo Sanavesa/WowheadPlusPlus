@@ -4,6 +4,8 @@ import com.wowhead.database.Database;
 import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.constants.ItemRarity;
 import com.wowhead.database.tables.Elixir;
+import com.wowhead.gui.PageManager;
+import com.wowhead.gui.page.ElixirDisplayPage;
 
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
@@ -21,11 +23,12 @@ public class ElixirTableResultView
 {
 	private VBox root = new VBox(20);
 	private TableView<Elixir> table = new TableView<Elixir>();
-	
+	private final PageManager pageManager;
 	
 	@SuppressWarnings("unchecked")
-	public ElixirTableResultView()
+	public ElixirTableResultView(PageManager pageManager)
 	{
+		this.pageManager = pageManager;
 		TableColumn<Elixir, Integer> idCol = new TableColumn<>("ID");
 		TableColumn<Elixir, String> nameCol = new TableColumn<>("Name");
 		TableColumn<Elixir, ItemRarity> rarityCol = new TableColumn<>("Rarity");
@@ -67,7 +70,6 @@ public class ElixirTableResultView
 				if(e.getClickCount() == 2 && (!row.isEmpty()))
 				{
 					Elixir rowData = row.getItem();
-					System.out.println("Double clicked " + rowData.getId());
 					viewElixir(rowData);
 				}
 			});
@@ -115,8 +117,9 @@ public class ElixirTableResultView
 		return root;
 	}
 	
-	public void viewElixir(Elixir Elixir)
+	public void viewElixir(Elixir elixir)
 	{
-		table.getItems().remove(Elixir);
+		ElixirDisplayPage page = (ElixirDisplayPage) pageManager.addPage(ElixirDisplayPage.class);
+		page.loadDisplay(elixir);
 	}
 }

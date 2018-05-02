@@ -1,7 +1,7 @@
 .databaseSelectionButton {
 	-fx-text-fill: #FFFFFF;
 	-fx-font-family: 'Arial';
-	-fx-font-fize: 20px;
+	-fx-font-size: 12px;
 	-fx-font-weight: bold;
 	-fx-background-color: #555555;
 	-fx-background-radius: 12px;
@@ -20,7 +20,7 @@
 .databaseSelectionButton-selected {
 	-fx-text-fill: #FFFFFF;
 	-fx-font-family: 'Arial';
-	-fx-font-fize: 20px;
+	-fx-font-size: 12px;
 	-fx-font-weight: bold;
 	-fx-background-color: #1f60c2;
 	-fx-background-radius: 12px;
@@ -37,7 +37,7 @@
 .topViewButton {
 	-fx-text-fill: #FFFFFF;
 	-fx-font-family: 'Arial';
-	-fx-font-fize: 20px;
+	-fx-font-size: 12px;
 	-fx-font-weight: bold;
 	-fx-background-color: #555555;
 	-fx-background-radius: 12px;

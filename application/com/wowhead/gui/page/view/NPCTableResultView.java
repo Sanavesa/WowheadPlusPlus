@@ -5,6 +5,7 @@ import com.wowhead.database.constants.AccountRank;
 import com.wowhead.database.constants.Faction;
 import com.wowhead.database.constants.NPCType;
 import com.wowhead.database.tables.NPC;
+import com.wowhead.gui.PageManager;
 
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
@@ -22,10 +23,12 @@ public class NPCTableResultView
 {
 	private TableView<NPC> table = new TableView<NPC>();
 	private VBox root = new VBox(20);
+	private final PageManager pageManager;
 
 	@SuppressWarnings("unchecked")
-	public NPCTableResultView()
+	public NPCTableResultView(PageManager pageManager)
 	{
+		this.pageManager = pageManager;
 		TableColumn<NPC, Integer> idCol = new TableColumn<>("ID");
 		TableColumn<NPC, String> nameCol = new TableColumn<>("Name");
 		TableColumn<NPC, Faction> factionCol = new TableColumn<>("Faction");
